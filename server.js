@@ -27,6 +27,10 @@ const productSchema = new mongoose.Schema({
 
 const Products = new mongoose.model("Product", productSchema);
 
+app.get("/", (req,res) => {
+    res.send("Hello");
+})
+
 app.post("/product/card", (req,res) => {
     const prod = req.body;
 
