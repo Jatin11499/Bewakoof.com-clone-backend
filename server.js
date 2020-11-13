@@ -7,8 +7,13 @@ const app = express();
 const port = process.env.PORT || 8000;
 const connection_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gwzcc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
+var corsOptions = {
+    origin: 'https://bewakoof-clone-backend.herokuapp.com',
+    optionsSuccessStatus: 200
+}
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 mongoose.connect(connection_url,{
     useNewUrlParser: true,
@@ -27,11 +32,11 @@ const productSchema = new mongoose.Schema({
 
 const Products = new mongoose.model("Product", productSchema);
 
-app.get("/", (req,res) => {
+app.get("/", (req,res,next) => {
     res.send("Hello");
 });
 
-app.post("/product/card", (req,res) => {
+app.post("/product/card", (req,res,next) => {
     const prod = req.body;
 
     Products.create(prod, (err, data) => {
@@ -43,7 +48,7 @@ app.post("/product/card", (req,res) => {
     });
 });
 
-app.get("/product/card", (req,res) => {
+app.get("/product/card", (req,res,next) => {
     const prod = req.body;
 
     Products.find(prod, (err, data) => {
