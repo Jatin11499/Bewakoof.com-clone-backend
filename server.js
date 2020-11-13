@@ -1,14 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8000;
 const connection_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gwzcc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 app.use(express.json());
-app.use(cors());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
