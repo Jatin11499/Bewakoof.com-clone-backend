@@ -52,7 +52,7 @@ app.post("/product/card", (req,res,next) => {
 
 app.get("/product/card", (req,res,next) => {
     const prod = req.body;
-
+    res.header("Access-Control-Allow-Origin", "*");
     Products.find(prod, (err, data) => {
         if(err){
             res.status(500).send(err);
