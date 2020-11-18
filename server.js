@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 8000;
-const connection_url = `mongodb+srv://Jatin11499:a1b2c344@cluster0.gwzcc.mongodb.net/bewakoofDB?retryWrites=true&w=majority`;
+const connection_url = ``;
 
 app.use(express.json());
 app.use(cors());
